@@ -3,8 +3,8 @@ from django.db import models
 class Forms(models.Model):
     name = models.CharField(verbose_name="Form Name",max_length=50)
     slug = models.SlugField(verbose_name="Form Slug",max_length=50,default="")
-    description = models.CharField(verbose_name="Form Name",max_length=15,null=True,blank=True)
-    to_url = models.URLField(verbose_name="URL to ?",max_length=150)
+    description = models.CharField(verbose_name="Form Description",max_length=15,null=True,blank=True)
+    to_url = models.CharField(verbose_name="URL to ?",max_length=150)
 
     def __str__(self):
         return self.name
@@ -27,3 +27,4 @@ class FormFieldsStorage(models.Model):
     def __str__(self):
         return self.form.name + "@" + self.field.title
     
+

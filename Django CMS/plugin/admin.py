@@ -15,3 +15,4 @@ class PluginOptionAdmin(admin.ModelAdmin):
         model = PluginOption
 
 admin.site.register(PluginOption,PluginOptionAdmin)
+

@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="{{form.to_url}}" method="POST">
+        <h1>{{form.name}}</h1>
+
     
+    {% for f in form.fields %}
+    <div style="{{f.custom_css}}">
+    <label for="{{f.title}}"> {{f.title}} </label>
+        <input type="{{f.field_type}}" name="{{f.title}}" placeholder="{{f.placeholder}}">
+    </div>
+    {% endfor %}
+</form>
 </body>
 </html>

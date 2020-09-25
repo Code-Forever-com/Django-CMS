@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbord</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="container-fluid dash-head">
+        <!-- nav start--->
+        <nav class="dash-nav">
+            <ul class="dash-nav-list d-flex">
+                <li class="dash-nav-list-item">
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        Code-Forever
+                    </a>
+                </li>
+                <li class="dash-nav-list-item dash-dropdown">
+                    <a href="#" data-target="dropdown-add">
+                        <i class="fa fa-plus"></i>
+                        Yeni
+                    </a>
+                    <!-- dropdown menu -->
+                    <div class="dash-dropdown-menu" id="dropdown-add">
+                        <ul class="dash-nav-list">
+                            <li class="dash-nav-list-item">
+                                <a href="#">
+                                    <i class="fa fa-pencil"></i>
+                                    Post
+                                </a>
+                            </li>
+                            <li class="dash-nav-list-item">
+                                <a href="#">
+                                    <i class="fa fa-video-camera"></i>
+                                    Video
+                                </a>
+                            </li>
+                            <li class="dash-nav-list-item">
+                                <a href="#">
+                                    <i class="fa fa-music"></i>
+                                    Audio
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="dash-nav-list-item">
+                    <a href="#">
+                        <i class="fa fa-paint-brush"></i>
+                        Özelleştir
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- nav end--->
+    </header>
+
+    <section class="container-fluid">
+        <div class="row">
+            <aside class="dash-nav-side">
+                <section class="aside-menu-section">
+                    <nav class="dash-nav-side-menu">
+                        <ul class="aside-menu-list">
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-home"></i>
+                                    <span class="aside-menu-text">
+                                        Başlangıç
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+                <section class="aside-menu-section">
+                    <nav class="dash-nav-side-menu">
+                        <ul class="aside-menu-list">
+                            <li class="aside-menu-list-item aside-nav-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-pencil"></i>
+                                    <span class="aside-menu-text">
+                                        Yazılar
+                                    </span>
+                                </a>
+                                <div class="aside-dropdown-menu">
+                                    <ul class="dash-nav-list">
+                                        <li class="dash-nav-list-item">
+                                            <a href="#">
+                                                Yazı Ekle
+                                            </a>
+                                        </li>
+                                        <li class="dash-nav-list-item">
+                                            <a href="#">
+                                                Tüm Yazılar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-video-camera"></i>
+                                    <span class="aside-menu-text">
+                                        Videolar
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-archive"></i>
+                                    <span class="aside-menu-text">
+                                        Ürünler
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-terminal"></i>
+                                    <span class="aside-menu-text">
+                                        Projeler
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-image"></i>
+                                    <span class="aside-menu-text">
+                                        Ortam
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-file"></i>
+                                    <span class="aside-menu-text">
+                                        Sayfalar
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-comment"></i>
+                                    <span class="aside-menu-text">
+                                        Yorumlar
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+                <section class="aside-menu-section">
+                    <nav class="dash-nav-side-menu">
+                        <ul class="aside-menu-list">
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-paint-brush"></i>
+                                    <span class="aside-menu-text">
+                                        Görünüm
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-plug"></i>
+                                    <span class="aside-menu-text">
+                                        Eklentiler
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-user"></i>
+                                    <span class="aside-menu-text">
+                                        Kullanıcılar
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-wrench"></i>
+                                    <span class="aside-menu-text">
+                                        Araçlar
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="aside-menu-list-item">
+                                <a href="#">
+                                    <i class="fa fa-cogs"></i>
+                                    <span class="aside-menu-text">
+                                        Ayarlar
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+                <section class="aside-menu-section">
+                    <ul class="aside-menu-list">
+                        <li class="aside-menu-list-item">
+                            <a href="#" id="close-menu">
+                                <i class="fa fa-arrow-left"></i>
+                                <span class="aside-menu-text">
+                                    Menüyü Daralt
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+
+            <div class="main">
+                <section class="header">
+                    <h1>Pages</h1>
+                    <a class="button" href="#">Add New</a>
+                </section>
+                <hr>
+                <section class="body">
+                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci,
+                        exercitationem? Aut, reprehenderit corporis. Cupiditate, possimus?</p>
+                    
+                    <!-- custom table -->
+                    <div class="cms-table">
+                        <div class="cms-thead">
+                            <div class="cms-th">
+                                #
+                            </div>
+                            <div class="cms-th">
+                                title
+                            </div>
+                            <div class="cms-th">
+                                content
+                            </div>
+                            <div class="cms-th">
+                                created time
+                            </div>
+                        </div>
+                        <div class="cms-body">
+                            <div class="cms-tr-container">
+                                <div class="cms-tr">
+                                    <div class="cms-td">
+                                        1
+                                    </div>
+                                    <div class="cms-td">
+                                        sample title
+                                    </div>
+                                    <div class="cms-td">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, nostrum.
+                                    </div>
+                                    <div class="cms-td">
+                                        12 may
+                                    </div>
+                                </div>
+                                <div class="cms-table-detail">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ut?
+                                </div>
+                            </div>
+                            <div class="cms-tr-container">
+                                <div class="cms-tr">
+                                    <div class="cms-td">
+                                        2
+                                    </div>
+                                    <div class="cms-td">
+                                        sample title
+                                    </div>
+                                    <div class="cms-td">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, nostrum.
+                                    </div>
+                                    <div class="cms-td">
+                                        12 may
+                                    </div>
+                                </div>
+                                <div class="cms-table-detail">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ut?
+                                </div>
+                            </div>
+                            <div class="cms-tr-container">
+                                <div class="cms-tr">
+                                    <div class="cms-td">
+                                        3
+                                    </div>
+                                    <div class="cms-td">
+                                        sample title
+                                    </div>
+                                    <div class="cms-td">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, nostrum.
+                                    </div>
+                                    <div class="cms-td">
+                                        12 may
+                                    </div>
+                                </div>
+                                <div class="cms-table-detail">
+                                    <a href="" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- custom table -->
+
+                    <!-- input -->
+                    <div class="form-group my-2 w-50">
+                        <label for="inp">Input Label</label>
+                        <input class="form-control" type="text" name="" id="inp" placeholder="Input Placeholder" aria-describedby="helpinput">
+                        <small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, adipisci!</small>
+                    </div>
+                    <div class="form-group my-2 w-50">
+                        <label for="inp">Input Label</label>
+                        <input class="form-control" type="email" name="" id="inp" placeholder="Input Placeholder" aria-describedby="helpinput">
+                        <small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, adipisci!</small>
+                    </div>
+                    <div class="form-group my-2 w-50">
+                        <label for="inputselect">Input Label</label>
+                        <select name="" id="inputselect" class="form-control">
+                            <option value="a" selected>Choose</option>
+                            <option value="a" >...</option>
+                        </select>
+                        <small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, adipisci!</small>
+                    </div>
+                    <div class="form-group my-2 w-50">
+                        <label for="inp">Input Label</label>
+                        <textarea class="form-control" name="inp" id="" cols="30" rows="10" aria-describedby=""></textarea>
+                        <small class="form-text text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, adipisci!</small>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!--Scripts-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+
+</html>
