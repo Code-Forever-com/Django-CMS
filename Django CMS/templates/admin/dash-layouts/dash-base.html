@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
+{% extends "./layout.html" %}
 {% block body %}
-    {% include "inc/admin-top-bar.html" %}
+    {% include "./admin-top-bar.html" %}
     
     <section class="container-fluid">
         <div class="row">
@@ -9,7 +9,7 @@
                     <nav class="dash-nav-side-menu">
                         <ul class="aside-menu-list">
                             <li class="aside-menu-list-item">
-                                <a href="#">
+                                <a href="{% url 'admin:index' %}">
                                     <i class="fa fa-home"></i>
                                     <span class="aside-menu-text">
                                         Başlangıç
@@ -22,68 +22,29 @@
                 <section class="aside-menu-section">
                     <nav class="dash-nav-side-menu">
                         <ul class="aside-menu-list">
-                            <li class="aside-menu-list-item aside-nav-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-pencil"></i>
-                                    <span class="aside-menu-text">
-                                        Yazılar
-                                    </span>
-                                </a>
-                                <div class="aside-dropdown-menu">
-                                    <ul class="dash-nav-list">
-                                        <li class="dash-nav-list-item">
-                                            <a href="#">
-                                                Yazı Ekle
-                                            </a>
-                                        </li>
-                                        <li class="dash-nav-list-item">
-                                            <a href="#">
-                                                Tüm Yazılar
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-video-camera"></i>
-                                    <span class="aside-menu-text">
-                                        Videolar
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-archive"></i>
-                                    <span class="aside-menu-text">
-                                        Ürünler
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-terminal"></i>
-                                    <span class="aside-menu-text">
-                                        Projeler
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-image"></i>
-                                    <span class="aside-menu-text">
-                                        Ortam
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-file"></i>
-                                    <span class="aside-menu-text">
-                                        Sayfalar
-                                    </span>
-                                </a>
-                            </li>
+                            {% if app_list %}
+                                {% for app in app_list %}
+                                <li class="aside-menu-list-item aside-nav-dropdown">
+                                    <a href="#">
+                                        <i class="fa fa-pencil"></i>
+                                        <span class="aside-menu-text">
+                                            {{app.app_label}}
+                                        </span>
+                                    </a>
+                                    <div class="aside-dropdown-menu">
+                                        <ul class="dash-nav-list">
+                                            {% for model in app.models %}
+                                            <li class="dash-nav-list-item">
+                                                    <a href="#">
+                                                        {{model.name}}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
                             <li class="aside-menu-list-item">
                                 <a href="#">
                                     <i class="fa fa-comment"></i>
@@ -160,18 +121,21 @@
             
             {% endblock main %}
             </div>
-
+{% for app  in request.apps %}
+    {{app}}
+{% endfor %}
 {% endblock body %}
 
 {% block customcss %}
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/static/assets/css/style.css">
+
 {% block css %}
 
 {% endblock css %}
 {% endblock customcss %}
 
 {% block customjs %}
-<script src="app.js"></script>
+<script src="/static/assets/js/app.js"></script>
 {% block js %}
 
 {% endblock js %}

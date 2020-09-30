@@ -1,0 +1,10 @@
+<h1>hello</h1>
+{% load i18n %}
+
+
+{% if app_list %}
+  {% for app in app_list %}
+  {{app.app_label}}
+  {% endfor %}
+  {% endif %}
+

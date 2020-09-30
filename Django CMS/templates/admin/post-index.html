@@ -1,0 +1,69 @@
+{% extends "./dash-layouts/dash-base.html" %}
+
+{% block main %}
+    <section class="header">
+        {{ header }}
+    </section>
+    <hr>
+    <section class="body">
+        <p class="description">{{description}}</p>
+        
+        <!-- custom table -->
+        <div class="cms-table">
+            <div class="cms-thead">
+                <div class="cms-th">
+                    #
+                </div>
+                
+                <div class="cms-th">
+                    Title
+                </div>
+                <div class="cms-th">
+                    Author
+                </div>
+                <div class="cms-th">
+                    Created Time
+                </div>
+                
+            </div>
+            <div class="cms-body">
+                {% for post in posts %}
+                <div class="cms-tr-container">
+                    <div class="cms-tr">
+                        <div class="cms-td">
+                            {{post.id}}
+                        </div>
+                        <div class="cms-td">
+                            {{post.title}}
+                        </div>
+                        <div class="cms-td">
+                            {{post.author}}
+                        </div>
+                        <div class="cms-td">
+                            {{post.created_time}}
+                        </div>
+                    </div>
+                    <div class="cms-table-detail">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ut?
+                    </div>
+                </div>
+                {% endfor %}
+                
+                
+            </div>
+        </div>
+        <!-- custom table -->
+    </section>
+{% endblock main %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+ {{header}} Add New
+{% endblock title %}

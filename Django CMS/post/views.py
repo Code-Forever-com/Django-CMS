@@ -9,7 +9,7 @@ def get_posts(post_filter = {}):
 
     # search section
     if 's' in post_filter:
-        posts = Post.objects.filter(Q(title=post_filter['s'],content=post_filter['s']))
+        posts = posts.filter(title__in=post_filter['s'])
         return posts
 
     # author section
@@ -22,7 +22,7 @@ def get_posts(post_filter = {}):
 
     # post type section    
     if 'post_type' in post_filter:
-        pt = PostType.objects.filter(singular_name=post_filter['post_type'])
+        pt = PostType.objects.filter(name=post_filter['post_type'])
         posts = posts.filter(post_type=pt.id)
 
     # status section
@@ -34,7 +34,7 @@ def get_posts(post_filter = {}):
 
     # category section
     if 'cat' in post_filter:
-        category = PostCategory.objects.filter(cat=post_filter['cat'])
+        category = PostTermStorage.objects.filter(term=post_filter['cat'])
         p_list = []
         for c in category:
             p = posts.filter(id=c.post.id).first()
@@ -72,46 +72,18 @@ def get_posts(post_filter = {}):
     
 
     if 'posts_per_page' in post_filter:
-        posts = Paginator(posts,post_filter['posts_per_page'])
+        #posts = posts.
+        pass
 
-
-
-    for p in posts:
-        categories = PostCategory.objects.filter(post=p.id)
-        labels = PostLabel.objects.filter(post=p.id)
-        p.categories = list()
-        p.labels = list()
-        p.comments = Comment.objects.filter(post=p.id)
-        for category in categories:
-            cat = Category.objects.filter(id=category.cat.id)
-            p.categories.append(cat)
-        for label in labels:
-            lab = Label.objects.filter(id=label.label.id)
-            p.labels.append(lab)
-            
     return posts
 
 def get_post(post_id):
-    p = Post.objects.filter(id=post_id).first()
-    if p:
-        categories = PostCategory.objects.filter(post=p.id)
-        labels = PostLabel.objects.filter(post=p.id)
-        p.categories = list()
-        p.labels = list()
-        p.comments = Comment.objects.filter(post=p.id)
-        for category in categories:
-            cat = Category.objects.filter(id=category.cat.id)
-            p.categories.append(cat)
-        for label in labels:
-            lab = Label.objects.filter(id=label.label.id)
-            p.labels.append(lab)
+    return Post.objects.filter(id=post_id).first()
 
-    return p
 
 def get_post_author(postID):
     post = Post.objects.filter(id=postID).first()
     return post.author
 
 def get_post_comments(postID):
-    comments = Comment.objects.filter(post=postID)
-    return comments
+    return Comment.objects.filter(post=postID)

@@ -12,41 +12,24 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post,PostAdmin)
 
-class CategoryAdmin(admin.ModelAdmin):
+class TermAdmin(admin.ModelAdmin):
     list_display = ['name']
     list_filter = ['created_time']
     search_fields = ['name']
     prepopulated_fields={'slug':('name',)}
     class Meta:
-        model = Category
+        model = PostTerm
 
-admin.site.register(Category,CategoryAdmin)
+admin.site.register(PostTerm,TermAdmin)
 
-class PostCategoryAdmin(admin.ModelAdmin):
-    list_display = ['post','cat']
-    search_fields = ['cat']
+class PostTermAdmin(admin.ModelAdmin):
+    list_display = ['post','term']
+    search_fields = ['term']
     class Meta:
-        model = PostCategory
+        model = PostTermStorage
 
-admin.site.register(PostCategory,PostCategoryAdmin)
+admin.site.register(PostTermStorage,PostTermAdmin)
 
-class LabelAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    list_filter = ['created_time']
-    search_fields = ['name']
-    prepopulated_fields={'slug':('name',)}
-    class Meta:
-        model = Label
-
-admin.site.register(Label,LabelAdmin)
-
-class PostLabelAdmin(admin.ModelAdmin):
-    list_display = ['post','label']
-    search_fields = ['label']
-    class Meta:
-        model = PostLabel
-
-admin.site.register(PostLabel,PostLabelAdmin)
 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['writer']

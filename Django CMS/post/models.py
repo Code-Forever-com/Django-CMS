@@ -22,11 +22,35 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class Category(models.Model):
+    def get_categories(self):
+        terms = self.terms.all()
+        cat_terms = []
+        for term in terms:
+            if(term.term.is_category and term is not None):
+                cat_terms.append(term.term)
+        return cat_terms or False
+
+    def get_labels(self):
+        terms = self.terms.all()
+        label_terms = []
+        for term in terms:
+            if(term.term.is_label and term is not None):
+                label_terms.append(term.term)
+        return label_terms or False
+            
+    def get_comments(self):
+        return self.comments.all() or False
+
+    def get_post_type(self):
+        return self.post_type
+
+class PostTerm(models.Model):
     name = models.CharField(max_length=20,verbose_name="Kategori İsmi")
     slug = models.SlugField(unique=True,max_length=30,verbose_name="Kategori Bağlantı")
     description = models.CharField(max_length=100,verbose_name="Kategori Açıklaması")
     created_time = models.DateTimeField(auto_now_add=True,verbose_name="Yayınlanma Tarihi")
+    is_category = models.BooleanField(default=False,verbose_name="Is Category")
+    is_label = models.BooleanField(default=False,verbose_name="Is Label")
 
     class Meta:
         ordering = ["-created_time"]
@@ -34,25 +58,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class PostCategory(models.Model):
-    post = models.ForeignKey("post.Post",on_delete=models.CASCADE,verbose_name="Post of Category",related_name="category")
-    cat = models.ForeignKey("post.Category",on_delete=models.CASCADE,verbose_name="Category of Post") 
-
-class Label(models.Model):
-    name = models.CharField(max_length=20,verbose_name="Etiket İsmi")
-    slug = models.SlugField(unique=True,max_length=30,verbose_name="Etiket Bağlantı")
-    description = models.CharField(max_length=100,verbose_name="Etiket Açıklaması")
-    created_time = models.DateTimeField(auto_now_add=True,verbose_name="Yayınlanma Tarihi")
-
-    class Meta:
-        ordering = ["-created_time"]
-
-    def __str__(self):
-        return self.name
-
-class PostLabel(models.Model):
-    post = models.ForeignKey("post.Post",on_delete=models.CASCADE,verbose_name="Post of Label",related_name="label")
-    label = models.ForeignKey("post.Label",on_delete=models.CASCADE,verbose_name="Label of Post") 
+class PostTermStorage(models.Model):
+    post = models.ForeignKey("post.Post",on_delete=models.CASCADE,verbose_name="Post of Term",related_name="terms")
+    term = models.ForeignKey("post.PostTerm",on_delete=models.CASCADE,verbose_name="Term of Post",related_name="termposts") 
 
 class Comment(models.Model):
     def donot(self):
@@ -85,5 +93,3 @@ class PostType(models.Model):
 
     def __str__(self):
         return self.name
-    
-

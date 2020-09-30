@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            background-color: #ddd;
+        }
+        .login-container{
+            margin: auto;
+            display: block;
+            background-color: white;
+            border: 3px solid #d3d3d3;
+            border-radius: 5%;
+            padding: 1rem 3rem 2rem 3rem;
+        }
+        .symbol img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            margin: auto;
+        }
+        form div a:hover{
+            text-decoration: none;
+        }
+        .messages .cms-alert{
+            padding: .5rem;
+            margin: .5rem 0;
+        }
+        .messages .cms-alert.cms-alert-success{
+            border-left: 3px solid var(--success);
+            background: #05ff0526;
+            color: var(--success);
+        }
+        .messages .cms-alert.cms-alert-error{
+            border-left: 3px solid var(--danger);
+            background: #dc354524;
+            color: var(--danger);
+        }
+        .messages .cms-alert.cms-alert-warning{
+            border-left: 3px solid var(--warning);
+            background: rgb(255 193 7 / .14);
+            color: var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="symbol my-3">
+            <img src="a.jpg" alt="">
+        </div>
+        <form method="post">
+        {% csrf_token %}
+            <div class="messages">
+                {% if messages %}
+                    {% for message in messages  %}
+                    <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+          
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" name="username" placeholder="Enter username...">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" placeholder="Enter password...">
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary">
+            <div class="my-2">
+                <a href="#" class="mx-1">Return to Code-Forever</a>|<a href="#" class="mx-1">Şifremi unuttum.</a>
+            </div>
+        </form>
+
+    </div>
+</body>
+
+</html>

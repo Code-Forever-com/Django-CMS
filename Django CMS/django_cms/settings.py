@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django_cms.apps.MyAdminConfig',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'account',
     'form',
     'plugin',
+    'dashboard',
     # 3rd Party Apps 
     'crispy_forms',
     'django_cleanup',
@@ -64,7 +66,9 @@ ROOT_URLCONF = 'django_cms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR,'templates')
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
