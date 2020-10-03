@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-from .models import Profile,Settings
-
-
+from .models import Profile
+from .forms import *
+from django.contrib import messages
 
 def loginView(request): 
     if request.user.is_authenticated:
-        return redirect("post:profile",slug=request.user.username)
+        return redirect("dashboard:index")
 
     form = LoginForm(request.POST or None)
     if form.is_valid():
@@ -16,8 +16,10 @@ def loginView(request):
         user = authenticate(request,username=username,password=password)
         if user is not None: 
             login(request,user)
-            return redirect("post:profile",slug=username)
-    return render(request,"login.html",{"form":form})
+            return redirect("dashboard:index")
+        else:
+            messages.error(request,"Login is not successfully!","cms-alert cms-alert-error")
+    return render(request,"admin/login.html",{"form":form})
 
 def registerView(request):
     form = RegisterForm(request.POST or None)

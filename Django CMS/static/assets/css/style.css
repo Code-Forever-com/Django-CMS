@@ -8,12 +8,20 @@
 
 .dash-nav {
     background: #23282d;
+    display: flex;
+    justify-content: space-between;
 }
 
 .dash-nav-list {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+.dash-nav-list:last-child .dash-dropdown-menu {
+    right: 0;
+}
+.dash-nav-list:first-child .dash-dropdown-menu {
+    left: 0;
 }
 
 
@@ -50,7 +58,6 @@
     padding: 0.5rem 0;
     min-width: 160px;
     top: 100%;
-    left: 0;
     display: none;
 }
 

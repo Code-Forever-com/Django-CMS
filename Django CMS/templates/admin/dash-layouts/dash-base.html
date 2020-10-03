@@ -1,142 +1,187 @@
 {% extends "./layout.html" %}
 {% block body %}
-    {% include "./admin-top-bar.html" %}
-    
-    <section class="container-fluid">
-        <div class="row">
-            <aside class="dash-nav-side">
-                <section class="aside-menu-section">
-                    <nav class="dash-nav-side-menu">
-                        <ul class="aside-menu-list">
-                            <li class="aside-menu-list-item">
-                                <a href="{% url 'admin:index' %}">
-                                    <i class="fa fa-home"></i>
-                                    <span class="aside-menu-text">
-                                        Başlangıç
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-                <section class="aside-menu-section">
-                    <nav class="dash-nav-side-menu">
-                        <ul class="aside-menu-list">
-                            {% if app_list %}
-                                {% for app in app_list %}
-                                <li class="aside-menu-list-item aside-nav-dropdown">
-                                    <a href="#">
-                                        <i class="fa fa-pencil"></i>
-                                        <span class="aside-menu-text">
-                                            {{app.app_label}}
-                                        </span>
-                                    </a>
-                                    <div class="aside-dropdown-menu">
-                                        <ul class="dash-nav-list">
-                                            {% for model in app.models %}
-                                            <li class="dash-nav-list-item">
-                                                    <a href="#">
-                                                        {{model.name}}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            {% endif %}
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-comment"></i>
-                                    <span class="aside-menu-text">
-                                        Yorumlar
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-                <section class="aside-menu-section">
-                    <nav class="dash-nav-side-menu">
-                        <ul class="aside-menu-list">
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-paint-brush"></i>
-                                    <span class="aside-menu-text">
-                                        Görünüm
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-plug"></i>
-                                    <span class="aside-menu-text">
-                                        Eklentiler
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-user"></i>
-                                    <span class="aside-menu-text">
-                                        Kullanıcılar
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-wrench"></i>
-                                    <span class="aside-menu-text">
-                                        Araçlar
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="aside-menu-list-item">
-                                <a href="#">
-                                    <i class="fa fa-cogs"></i>
-                                    <span class="aside-menu-text">
-                                        Ayarlar
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-                <section class="aside-menu-section">
+{% include "./admin-top-bar.html" %}
+
+<section class="container-fluid">
+    <div class="row">
+        <aside class="dash-nav-side">
+            <section class="aside-menu-section">
+                <nav class="dash-nav-side-menu">
                     <ul class="aside-menu-list">
                         <li class="aside-menu-list-item">
-                            <a href="#" id="close-menu">
-                                <i class="fa fa-arrow-left"></i>
+                            <a href="{% url 'dashboard:index' %}">
+                                <i class="fa fa-home"></i>
                                 <span class="aside-menu-text">
-                                    Menüyü Daralt
+                                    Başlangıç
                                 </span>
                             </a>
                         </li>
                     </ul>
-                </section>
-            </aside>
+                </nav>
+            </section>
+            <section class="aside-menu-section">
+                <nav class="dash-nav-side-menu">
+                    <ul class="aside-menu-list">
+                    {% if posttype_list %}
+                            {% for posttype in posttype_list %}
+                            <li class="aside-menu-list-item aside-nav-dropdown">
+                                <a href="{% url 'dashboard:posttype_all_items' posttype.id %}">
+                                
+                                    <i class="fa fa-pencil"></i>
+                                    <span class="aside-menu-text">
+                                        {{posttype.name}}
+                                    </span>
+                                </a>
+                                <div class="aside-dropdown-menu">
+                                    <ul class="dash-nav-list">
+                                        <li class="dash-nav-list-item">
+                                            <a href="{% url 'dashboard:posttype_all_items' posttype.id %}">
+                                                {{posttype.all_items}}
+                                            </a>
+                                        </li>
+                                        <li class="dash-nav-list-item">
+                                            <a href="{% url 'dashboard:posttype_add_new_item' posttype.id %}">
+                                            
+                                                {{posttype.add_new_item}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                        <li class="aside-menu-list-item">
+                            <a href="#">
+                            
+                                <i class="fa fa-comment"></i>
+                                <span class="aside-menu-text">
+                                    Yorumlar
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <section class="aside-menu-section">
+                <nav class="dash-nav-side-menu">
+                    <ul class="aside-menu-list">
+                        <li class="aside-menu-list-item">
+                            <a href="#">
+                                <i class="fa fa-paint-brush"></i>
+                                <span class="aside-menu-text">
+                                    Görünüm
+                                </span>
+                            </a>
+                        </li>
+                        <li class="aside-menu-list-item aside-nav-dropdown">
+                            <a href="{{plugin_dict.app_url}}">
+                                <i class="fa fa-plug"></i>
+                                <span class="aside-menu-text">
+                                    {{plugin_dict.name}}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="aside-menu-list-item aside-nav-dropdown">
+                            <a href="{{user_dict.app_url}}">
+                                <i class="fa fa-user"></i>
+                                <span class="aside-menu-text">
+                                    Users
+                                </span>
+                            </a>
+                            <div class="aside-dropdown-menu">
+                                <ul class="dash-nav-list">
+                                {% for model in user_dict.models %}
+                                <li class="dash-nav-list-item aside-nav-dropdown">
+                                        <a href="{{model.admin_url}}">
+                                            {{model.name}}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                                    <li class="dash-nav-list-item">
+                                        <a href="#">
+                                            My Profile
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="aside-menu-list-item">
+                            <a href="#">
+                                <i class="fa fa-wrench"></i>
+                                <span class="aside-menu-text">
+                                    Araçlar
+                                </span>
+                            </a>
+                        </li>
+                        <li class="aside-menu-list-item">
+                            <a href="#">
+                                <i class="fa fa-cogs"></i>
+                                <span class="aside-menu-text">
+                                    Ayarlar
+                                </span>
+                            </a>
+                        </li>
+                        {% if app_list %}
+                            {% for app in app_list %}
+                            <li class="aside-menu-list-item aside-nav-dropdown">
+                                <a href="{{app.app_url}}">
+                                    <i class="fa fa-cog"></i>
+                                    <span class="aside-menu-text">
+                                        {{app.name}}
+                                    </span>
+                                </a>
+                                <div class="aside-dropdown-menu">
+                                    <ul class="dash-nav-list">
+                                        {% for model in app.models %}
+                                        <li class="dash-nav-list-item">
+                                            <a href="{{model.admin_url}}">
+                                                {{model.name}}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </nav>
+            </section>
+            <section class="aside-menu-section">
+                <ul class="aside-menu-list">
+                    <li class="aside-menu-list-item">
+                        <a href="#" id="close-menu">
+                            <i class="fa fa-arrow-left"></i>
+                            <span class="aside-menu-text">
+                                Menüyü Daralt
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
 
-            <div class="main">
+        <div class="main">
             {% block main %}
-            
+
             {% endblock main %}
-            </div>
-{% for app  in request.apps %}
-    {{app}}
-{% endfor %}
-{% endblock body %}
+        </div>
+        {% for app  in request.apps %}
+        {{app}}
+        {% endfor %}
+        {% endblock body %}
 
-{% block customcss %}
-<link rel="stylesheet" href="/static/assets/css/style.css">
+        {% block customcss %}
+        <link rel="stylesheet" href="/static/assets/css/style.css">
 
-{% block css %}
+        {% block css %}
 
-{% endblock css %}
-{% endblock customcss %}
+        {% endblock css %}
+        {% endblock customcss %}
 
-{% block customjs %}
-<script src="/static/assets/js/app.js"></script>
-{% block js %}
+        {% block customjs %}
+        <script src="/static/assets/js/app.js"></script>
+        {% block js %}
 
-{% endblock js %}
-{% endblock customjs %}
+        {% endblock js %}
+        {% endblock customjs %}

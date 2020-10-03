@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load crispy_forms_tags %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,16 +40,24 @@
             border-left: 3px solid var(--success);
             background: #05ff0526;
             color: var(--success);
+            border-radius: 0;
         }
-        .messages .cms-alert.cms-alert-error{
+        .alert.alert-danger{
             border-left: 3px solid var(--danger);
-            background: #dc354524;
+            background: #f8d7da;
             color: var(--danger);
+            border-radius: 0;
         }
-        .messages .cms-alert.cms-alert-warning{
+        .alert.alert-warning{
             border-left: 3px solid var(--warning);
-            background: rgb(255 193 7 / .14);
+            background: rgb(255 193 7 / .3);
             color: var(--warning);
+            border-radius: 0;
+        }
+        .alert ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
         }
     </style>
 </head>
@@ -61,22 +69,16 @@
         </div>
         <form method="post">
         {% csrf_token %}
-            <div class="messages">
-                {% if messages %}
-                    {% for message in messages  %}
-                    <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message}}</div>
-                    {% endfor %}
-                {% endif %}
-          
-            </div>
-            <div class="form-group">
+            
+            {{form|crispy}}
+            <!-- <div class="form-group">
                 <label for="username">Username</label>
                 <input class="form-control" type="text" name="username" placeholder="Enter username...">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" placeholder="Enter password...">
-            </div>
+            </div> -->
             <input type="submit" value="Submit" class="btn btn-primary">
             <div class="my-2">
                 <a href="#" class="mx-1">Return to Code-Forever</a>|<a href="#" class="mx-1">Şifremi unuttum.</a>

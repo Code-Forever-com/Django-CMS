@@ -45,6 +45,30 @@
                 </a>
             </li>
         </ul>
+        <ul class="dash-nav-list d-flex">
+            <li class="dash-nav-list-item dash-dropdown">
+                <a href="#" data-target="dropdown-add">
+                    <i class="fa fa-user"></i>
+                    Hi, {{request.user.username}}
+                </a> 
+                <!-- dropdown menu -->
+                <div class="dash-dropdown-menu" id="dropdown-add">
+                    <ul class="dash-nav-list">
+                        <li class="dash-nav-list-item">
+                            <a href="{#% url 'dashboard:profile' arg %}">
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="dash-nav-list-item">
+                            <a href="{% url 'account:logout' %}">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </nav>
     <!-- nav end--->
+    
 </header>

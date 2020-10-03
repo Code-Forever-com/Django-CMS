@@ -1,10 +1,25 @@
-<h1>hello</h1>
-{% load i18n %}
+{% extends "./dash-layouts/dash-base.html" %}
 
+{% block main %}
+    <section class="header">
+        <h2 class="h3">{{ post_type_info.name }}</h2>
+    </section>
+    <hr>
+    <section class="body">
+        <p class="description">"{{post_type_info.description}}"</p>
+        
+        {% include "./widgets/table.html" with list=posts %}
+    </section>
+{% endblock main %}
 
-{% if app_list %}
-  {% for app in app_list %}
-  {{app.app_label}}
-  {% endfor %}
-  {% endif %}
+{% block css %}
 
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+ {{header}} Add New
+{% endblock title %}

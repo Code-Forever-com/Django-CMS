@@ -16,13 +16,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-class Settings(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="User Settings")
-    is_dark = models.BooleanField(verbose_name="Karanlık Mod",default=False)
-
-    def __str__(self):
-        return self.user.username
-
 
 
 
