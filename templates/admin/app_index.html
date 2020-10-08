@@ -1,0 +1,123 @@
+{% extends "./dash-layouts/dash-base.html" %}
+
+{% block main %}
+{% for app in curr_app_list %}
+<section class="header">
+    <h2 class="h3">{{title}}</h2>
+</section>
+<hr>
+<section class="body">
+    <div class="container-fluid">
+            {% if plugin_list %}
+                <div class="row">
+
+                        {% for plugin in plugin_list %}
+
+                                <div class="col-12 col-md-4">
+                                    <div class="card" style="z-index: 0;">
+                                        <div class="card-header bg-dark text-light">
+                                            {{plugin.name}}
+                                        </div>
+                                        <div class="card-body">
+                                            <ul>
+                                            {% if plugin.description %}
+                                                <li>Description: {{plugin.description}}</li>
+                                            {% endif %}
+                                            {% if plugin.author %}
+                                                <li>Author: 
+                                                {% if plugin.author_url %}
+                                                <a href="{{plugin.author_url}}">{{plugin.author}}</a>
+                                                {% else %}
+                                                {{plugin.author}}
+                                                {% endif %}
+                                                </li>
+                                            {% endif %}
+                                            {% if plugin.website %}
+                                            <li>Website: <a href="{{plugin.website}}">{{plugin.name}}</a> </li>
+                                            {% endif %}
+                                            {% if plugin.version %}
+                                            <li>Version: {{plugin.version}}</li>
+                                            {% endif %}
+                                                
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor %}
+
+                </div>
+                <hr>
+            {% endif %}
+        <div class="row mt-3">
+            {% for model in app.models %}
+            <div class="col-12 col-md-4">
+                <div class="card" style="z-index: 0;">
+                    <div class="card-header bg-dark text-light">
+                        {{model.name}}
+                    </div>
+                    <div class="card-body">
+                        <a class="btn btn-primary" href="{{model.admin_url}}">Manage</a>
+                        <a class="btn btn-success" href="{{model.add_url}}">Add New</a>
+                        <hr>
+                        <strong>Permisions</strong>
+                        <hr>
+                        <ul>
+                            <li>
+                                Add : 
+                                {% if model.perms.add %}
+                                <i class="fa fa-check-circle text-success"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </li>
+                            <li>
+                                Change : 
+                                {% if model.perms.change %}
+                                <i class="fa fa-check-circle text-success"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </li>
+                            <li>
+                                Delete : 
+                                {% if model.perms.delete %}
+                                <i class="fa fa-check-circle text-success"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </li>
+                            <li>
+                                View : 
+                                {% if model.perms.view %}
+                                <i class="fa fa-check-circle text-success"></i>
+                                {% else %}
+                                <i class="fa fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+</section>
+
+{% endfor %}
+{% endblock main %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+Dashboard
+{% endblock title %}

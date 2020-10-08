@@ -1,0 +1,37 @@
+{% extends "./dash-layouts/dash-base.html" %}
+
+{% block main %}
+    <section class="header">
+        <h2 class="h3 d-inline mr-3">{{ post_type_info.name}}{{ model_label}}</h2>
+        <a class="btn btn-primary" href="add/">Add New</a>
+    </section>
+    <hr>
+    <section class="body">
+    {% if post_type_info or description %}
+        <p class="description">"{{post_type_info.description}}"</p>
+    {% endif %}
+        
+        {% if posts %}
+        {% include "./widgets/table.html" with list=posts %}
+        {% else %}
+        <div class="alert alert-warning">
+            Herhangi bir kayıt bulunamadı.
+        </div>
+        {% endif %}
+        
+    </section>
+  {{model_perms}}
+{% endblock main %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock js %}
+
+{% block title %}
+{{ post_type_info.name}} {{ model_label}} 
+{% endblock title %}
+

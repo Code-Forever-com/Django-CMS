@@ -1,0 +1,30 @@
+<!-- custom table -->
+<div class="cms-table">
+    <div class="cms-thead">
+        {% for i in list_display %}
+        <div class="cms-th">
+            {{i}}
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="cms-body">
+        {% for list_item in list %}
+        <div class="cms-tr-container">
+            <div class="cms-tr">
+                {% for li in list_item %}
+                <div class="cms-td">
+                    {{li}}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="cms-table-detail">
+                {{list_item.detail_html}}
+            </div>
+        </div>
+        {% endfor %}
+        
+        
+    </div>
+</div>
+<!-- custom table -->
