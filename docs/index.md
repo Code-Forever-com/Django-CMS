@@ -1,37 +1,51 @@
-## Welcome to GitHub Pages
+# DjangoS ( In Development, Unreleased )
 
-You can use the [editor on GitHub](https://github.com/Code-Forever-com/DjangoS/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+[![Acrions Status](https://github.com/Code-Forever-com/Django-CMS/workflows/Djangos/badge.svg)](https://github.com/Code-Forever-com/Django-CMS/actions)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+[logo]: logo_url 
 
-### Markdown
+![DjangoS Logo][logo]
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**DjangoS** is a flexible and fast a content management system project on based django. You can create your website or a web system with **DjangoS**.
 
-```markdown
-Syntax highlighted code block
+## Features
+DjangoS has 5 main features. They are;
+* fast work 
+* easy installation
+* flexible
+* automatic management
+* having a built-in visual composer( web builder )  
+* well-detailed dashboard and documented ( coming feature ) 
 
-# Header 1
-## Header 2
-### Header 3
+### Fast Work
+**DjangoS** works as **a django plugin**. Therefore, you can use it with a existing project or a new project. DjangoS always try to optimize itself for speed. Therefore, it try to optimize your DB that is everything for it such as deleting abondened rows.       
 
-- Bulleted
-- List
+### Easy Installation
+**DjangoS** use own built-in **installation wizard** for first installation. The installation wizard helps you to customize basics of your web system.
 
-1. Numbered
-2. List
+### Flexible
+You can extend **DjangoS** and add new features to your website. There are two extension types in DjangoS.
+#### Extension Types : 
+**App** : 
+> Apps in Djangos are big extensions. They can have own url structure, models, views, templates like a django app.
 
-**Bold** and _Italic_ and `Code` text
+**Plugin** : 
+> Plugins in Djangos are small extensions. They can have only templates, views. They generally attached DjangoS core with hooks and work for small tasks like view counter.    
 
-[Link](url) and ![Image](src)
-```
+### Automatic Management
+DjangoS suppports automatic tasks such as updating extensions. Therefore you can focus your content or businnes. 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Having a built-in visual composer( web builder )
+DjangoS have a built-in visual composer. You can built your pages and posts without writing HTML or CSS. It converts them into HTML and CSS codes for you.
 
-### Jekyll Themes
+## Dependencies
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Code-Forever-com/DjangoS/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Name | Used for
+---|---
+**Django** | Core Framework
+GrapesJS | Web Builder
+django-cleanup | DB optimization
+pillow | Images
+VueJS | Editor, Dashboard
+django-rest-framework | Rest API
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
