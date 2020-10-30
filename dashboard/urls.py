@@ -36,11 +36,11 @@ urlpatterns = [
   path('', dashboard_view.index, name='index'),
   path('login/', dashboard_view.login, name='login'),
   # path('logout/', logout, name='logout'),
- 
-    path("type/<int:posttype_id>/add/",dashboard_view.postTypeAddView,name="posttype_add_new_item"),
-    path("type/<int:posttype_id>/index/", dashboard_view.postTypeIndexView,name="posttype_all_items"),
- #   path("users/",userIndexView,name="userIndex"),
-  #  path("users/<int:userID>",userDetailView,name="userDetail")
+    path("posts/<int:posttype_id>/", dashboard_view.postTypeIndexView,name="posttype_all_items"),
+    path("posts/<int:posttype_id>/add/",dashboard_view.postTypeAddView,name="posttype_add_new_item"),
+    path("posts/<int:posttype_id>/update/",dashboard_view.postTypeAddView,name="posttype_update_new_item"),
+    path("posts/<int:posttype_id>/delete/",dashboard_view.postTypeAddView,name="posttype_delete_new_item"),
+    
 
 ]
 

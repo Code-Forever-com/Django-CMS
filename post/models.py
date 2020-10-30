@@ -44,6 +44,21 @@ class Post(models.Model):
     def get_post_type(self):
         return self.post_type
 
+    def get_permalink(self):
+        return self.get_object_instances(["slug"])["slug"]
+
+    def get_object_instances(self,field_array = []):
+        instances = {}
+
+        for field in field_array:
+            try:
+                instances[field] = self.__dict__[field]
+            except:
+                pass
+        return instances
+
+
+
 class PostTerm(models.Model):
     name = models.CharField(max_length=20,verbose_name="Kategori İsmi")
     slug = models.SlugField(unique=True,max_length=30,verbose_name="Kategori Bağlantı")

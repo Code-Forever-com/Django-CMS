@@ -17,16 +17,13 @@ Including another URLconf
 from django.urls import path,include
 from post.views import get_posts
 from django.shortcuts import HttpResponse
-def a(request):
-    post = get_posts({"s":"a"})
-    return HttpResponse(post)
+
 
 urlpatterns = [
  #   path('admin/', admin.site.urls),
      path('dashboard/', include('dashboard.urls')),
     path('account/',include("account.urls")),
     path('form/', include("form.urls")),
-    path('abc/',a),
     path('', include("post.urls")),
     
 

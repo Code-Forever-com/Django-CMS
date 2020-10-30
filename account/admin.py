@@ -8,5 +8,3 @@ class UserModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Profile,UserModelAdmin) 
 
-
-

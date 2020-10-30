@@ -11,8 +11,28 @@
         <p class="description">"{{post_type_info.description}}"</p>
     {% endif %}
         
-        {% if posts %}
-        {% include "./widgets/table.html" with list=posts %}
+        <div class="card w-100 mb-2">
+            <div class="card-body form-inline">
+                <select class="form-control mr-3" name="" id="">
+                    {% for action in actions %}
+                    <option value="">{{ action }}</option>
+                    {% endfor %}
+                    
+                </select>
+                <select class="form-control mr-3" name="" id="">
+                    <option value="">Option</option>
+                </select>
+                <select class="form-control mr-3" name="" id="">
+                    <option value="">Option</option>
+                </select>
+                <select class="form-control mr-3" name="" id="">
+                    <option value="">Option</option>
+                </select>
+            </div>
+        </div>
+
+        {% if table %}
+        {% include "./widgets/table.html" with list=table %}
         {% else %}
         <div class="alert alert-warning">
             Herhangi bir kayıt bulunamadı.

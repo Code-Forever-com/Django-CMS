@@ -5,19 +5,11 @@ const editor = grapesjs.init({
   // Size of the editor
   height: '80vh',
   width: 'auto',
-  // Disable the storage manager for the moment
-  storageManager: {
-    id: 'gjs-',             // Prefix identifier that will be used on parameters
-    type: 'session',          // Type of the storage
-    autosave: true,         // Store data automatically
-    autoload: true,         // Autoload stored data on init
-    stepsBeforeSave: 5,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
-  },
+
+  plugins:['gjs-preset-webpage'],
   // Avoid any default panel
   panels: { defaults: [] },
-  blockManager: {
-    appendTo: '#blocks',
-  },
+
   styleManager: {
     appendTo: '#styles',
     sectors: [{
@@ -89,12 +81,6 @@ const editor = grapesjs.init({
       ]
     },
   ]
-  },
-  traitManager:{
-    appendTo:"#traits"
-  },
-  layerManager:{
-    appendTo:"#layers"
   }
 });
 

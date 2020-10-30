@@ -14,6 +14,9 @@ from django.db.models.fields import *
 def get_blog_option(key):
     return BlogOption.objects.filter(blog_key=key).first() or "Djangos"
 
+site.disable_action("delete_selected")
+
+
 
 def admin_login_required(function):
     def wrapper(DashboardView,request,*args,**kwargs):
@@ -122,12 +125,40 @@ class DashboardView():
         model = apps.get_model("post","post")
         model_admin = self.get_modelAdmin(model)
 
-        [table_list,cloumn_names] = self.create_index_table(model,model_admin.list_display,posts)
+        fields = []
+        instance = model_admin.get_changelist_instance(request)
+
+        for field in model_admin.list_display:
+            try:
+                fields.append( model._meta.get_field(field).verbose_name)
+            except:
+                pass
+        
+      
+
+        result_list = []
+        for result in instance.result_list:
+            result_item = []
+            
+            for r in model_admin.list_display :
+                result_item_dict = {}
+                if not r.startswith("__"):
+                    try:
+                        result_item_dict["value"] = result.__dict__[r] 
+                    except:
+                        f = model._meta.get_field(r)
+                        if f.related_model:
+                            result_item_dict["value"] = f.related_model.objects.get(id=f.value_from_object(result)) 
+                result_item.append(result_item_dict)
+            
+            result_list.append(result_item)
+
+        instance.result_list = result_list 
         
         context = {
                 'post_type_info': postType,
-                "posts":table_list,
-                "list_display": cloumn_names,
+                "table":instance,
+                "fields": fields,
                 **self.get_nav_list(request),
             }
         return render(request, self.post_type_index_template ,context)
@@ -135,6 +166,14 @@ class DashboardView():
     @admin_login_required
     def postTypeAddView(self,request,posttype_id):
         return HttpResponse("post type add view %s" % posttype_id)
+    
+    @admin_login_required
+    def postTypeUpdateView(self,request,posttype_id):
+        return HttpResponse("post type update view %s" % posttype_id)
+
+    @admin_login_required
+    def postTypeDeleteView(self,request,posttype_id):
+        return HttpResponse("post type delete view %s" % posttype_id)
 
 
     def get_nav_list(self,request):
@@ -226,15 +265,43 @@ class DashboardView():
         
         model = apps.get_model(app_label,model_label)
         model_admin = self.get_modelAdmin(model)
-        posts = model.objects.all()
+
+        fields = []
+        instance = model_admin.get_changelist_instance(request)
+
+        for field in model_admin.list_display:
+            try:
+                fields.append( model._meta.get_field(field).verbose_name)
+            except:
+                pass
         
-        [table_list,cloumn_names] = self.create_index_table(model,model_admin.list_display,posts)
+      
+
+        result_list = []
+        for result in instance.result_list:
+            result_item = []
+            
+            for r in model_admin.list_display :
+                result_item_dict = {}
+                if not r.startswith("__"):
+                    try:
+                        result_item_dict["value"] = result.__dict__[r] 
+                    except:
+                        f = model._meta.get_field(r)
+                        if f.related_model:
+                            result_item_dict["value"] = f.related_model.objects.get(id=f.value_from_object(result)) 
+                result_item.append(result_item_dict)
+            
+            result_list.append(result_item)
+
+        instance.result_list = result_list 
+    
         context = {
             "model_label" : capfirst(model_label),
             **self.each_context(),
             **self.get_nav_list(request),
-            "posts" : table_list,
-            "list_display" : cloumn_names,
+            "table" : instance,
+            "fields" : fields,
             "model_perms" : model_admin.get_model_perms(request)
         }
         return render(request,self.model_index_template,context)
@@ -247,7 +314,7 @@ class DashboardView():
         Form = self.generate_model_form(model)
         form = Form(request.POST or None)
         if model_label == "user":
-            form.sort_user_fields(["username","first_name","last_name","email","is_superuser","groups","user_permissions","is_staff"])
+            form.sort_user_fields(["username","first_name","last_name","email","is_superuser","groups","user_permissions","is_staff","password"])
 
         if form.is_valid():
             form.save()
@@ -291,31 +358,21 @@ class DashboardView():
         
     @admin_login_required
     def model_delete(self,request,object_id):
-        return HttpResponse("hello")
+        [app_label,model_label] = self.get_model_label_from_req(request)
+        model = apps.get_model(app_label,model_label)
         
+        obj = model.objects.filter(id=object_id).first()
+        if obj:
+            obj.delete()
+            messages.success(request,"Model object was deleted successfully.","alert-success")
+        else:
+            messages.error(request,"Model object was not founded!","alert-danger")
+        return redirect("/dashboard/%s/%s/"%(app_label,model_label))
+
     @admin_login_required
     def model_history(self,request,object_id):
         return HttpResponse("hello")
         
-    # create table for index
-    def create_index_table(self,model,list_display,list_index):
-        table_list = []
-        cloumn_names = []
-        for i in list_index:
-            li_list = []
-            for ld in list_display:
-                if not ld.startswith("__"):
-                    field = model._meta.get_field(ld)
-                    if field.related_model: 
-                        li_list.append(field.related_model.objects.get(id=field.value_from_object(i)))
-                    else:
-                        li_list.append(field.value_from_object(i))
-                    if not capfirst(field.verbose_name) in cloumn_names:
-                        cloumn_names.append(capfirst(field.verbose_name))
-            table_list.append(li_list)
-        return [table_list,cloumn_names]
-                
-
     def plugin_index(self):
         from os import listdir
         from os.path import isdir,join
@@ -327,7 +384,6 @@ class DashboardView():
                 f = open("./djangos-content/plugins/%s/credentials.txt" % plugin,"r")
                 header_lines = f.readlines()
                 for header in header_lines:
-                    plugin_dict
                     for header_tags in self.plugin_header_tags:
                         if(header.startswith(header_tags)):
                             plugin_dict[ header_tags.split("Plugin ")[1].replace(":","").replace(" ","_").lower() ] = header.split(header_tags)[1]
