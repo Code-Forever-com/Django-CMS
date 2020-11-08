@@ -29,11 +29,8 @@ You can extend **DjangoS** and add new features to your website. There are two e
 **App** : 
 > Apps in Djangos are big extensions. They can have own url structure, models, views, templates like a django app.
 
-<<<<<<< Updated upstream
+
 **Plugin** : 
-=======
-**PLugin** : 
->>>>>>> Stashed changes
 > Plugins in Djangos are small extensions. They can have only templates, views. They generally attached DjangoS core with hooks and work for small tasks like view counter.    
 
 ### Automatic Management
@@ -52,7 +49,4 @@ django-cleanup | DB optimization
 pillow | Images
 VueJS | Editor, Dashboard
 django-rest-framework | Rest API
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
